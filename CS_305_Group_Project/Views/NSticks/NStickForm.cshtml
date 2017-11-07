@@ -1,0 +1,17 @@
+﻿@model CS_305_Group_Project.Models.NStick
+
+<div class="form-group">
+    @Html.LabelFor(m => m.TimeStuck)
+    @Html.TextBoxFor(m => m.TimeStuck, new { @class = "form-control", type = "datetime-local" })
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Description)
+    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4 })
+</div>
+
+@Html.HiddenFor(m => m.Id)
+
+<input type="submit" class="btn btn-primary" value="Save" />
+@Html.ActionLink("Cancel", "Index")

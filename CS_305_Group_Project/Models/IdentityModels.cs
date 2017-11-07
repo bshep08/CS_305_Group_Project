@@ -20,6 +20,8 @@ namespace CS_305_Group_Project.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<NStick> NSticks {get; set;}
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CS_305_Group_Project.Models.NStick>
+@{
+    ViewBag.Title = "Needle Sticks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Needle Sticks</h2>
+
+<body>
+    <h4>
+        Stick Report
+    </h4>
+
+    <table cellpadding="5" cellspacing="5">
+        <tr>
+            <th></th>
+            <th>
+                Time Stuck
+            </th>
+
+            <th>
+                Decsription
+            </th>
+
+        </tr>
+        
+        @foreach (var NStick in Model)
+        {
+
+            <tr>
+
+                <td>
+
+                     @Html.ActionLink("Edit", "Edit", new { id = NStick.Id }) |
+
+                     @Html.ActionLink("Delete", "Delete", new { id = NStick.Id })
+
+                </td>
+
+                <td>
+
+                    @Html.Encode(String.Format("{0:g}", @NStick.TimeStuck))
+
+                </td>
+
+                <td>
+                    <div style="word-wrap:break-word;">
+                        @Html.Encode(@NStick.Description)
+                    </div>
+                </td>
+
+            </tr>
+
+         }
+
+    </table>
+</body>
+
+<p>
+    @Html.ActionLink("Report Needle Stick", "New")
+</p>
