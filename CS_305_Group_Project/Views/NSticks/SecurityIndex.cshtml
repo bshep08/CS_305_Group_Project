@@ -1,27 +1,26 @@
 ﻿@model IEnumerable<CS_305_Group_Project.Models.NStick>
 @{
-    ViewBag.Title = "Needle Sticks";
+    ViewBag.Title = "All Needle Sticks";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Needle Sticks</h2>
+<h2>All Needle Sticks</h2>
 
 <body>
     <h4>
-        User's Stick Report
+        All Stick Reports
     </h4>
-
-    <p>
-        @Html.ActionLink("Report Needle Stick", "New")
-    </p>
-
+    
     <p>
         @Html.ActionLink("Back to home", "Index", "Home")
     </p>
-
+    
     <table cellpadding="5" cellspacing="5">
         <tr>
-            <th></th>
+            <th>
+                User Name
+            </th>
+
             <th>
                 Time Stuck
             </th>
@@ -31,18 +30,14 @@
             </th>
 
         </tr>
-        
+
         @foreach (var NStick in Model)
         {
 
             <tr>
 
                 <td>
-
-                     @Html.ActionLink("Edit", "Edit", new { id = NStick.Id }) |
-
-                     @Html.ActionLink("Delete", "Delete", new { id = NStick.Id })
-
+                    @Html.Encode(@NStick.UserName)
                 </td>
 
                 <td>
@@ -59,7 +54,9 @@
 
             </tr>
 
-         }
+        }
 
     </table>
 </body>
+
+

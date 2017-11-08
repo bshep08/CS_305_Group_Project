@@ -20,6 +20,11 @@ namespace CS_305_Group_Project.Controllers
         {
             string UserName = User.Identity.Name;
 
+            //FOR THE LOVE OF GOD TAKE THIS OUT AND REPLACE WITH ACTUAL IDENTIFICATION
+            if (UserName.Equals("security@officer.org")) {
+                return RedirectToAction("SecurityIndex", "NSticks");
+            }
+
             if (UserName.Length == 0)
             {
                 return RedirectToAction("Login", "Account");
@@ -38,6 +43,19 @@ namespace CS_305_Group_Project.Controllers
 
                 return View(Sticks);
             }
+        }
+
+        public ActionResult SecurityIndex() {
+            string UserName = User.Identity.Name;
+
+            //FOR THE LOVE OF GOD TAKE THIS OUT AND REPLACE WITH ACTUAL IDENTIFICATION
+            if (UserName.Length != 0 && UserName.Equals("security@officer.org"))
+            {
+                var Sticks = DbContext.NSticks.ToList();
+                return View(Sticks);
+            }
+            else
+                return RedirectToAction("Login", "Account");
         }
 
         public ActionResult New()
@@ -115,10 +133,17 @@ namespace CS_305_Group_Project.Controllers
             if (Db_nStick == null)
                 return HttpNotFound();
 
-            Db_nStick.TimeStuck = nStick.TimeStuck;
-            Db_nStick.Description = nStick.Description;
-            
-            DbContext.SaveChanges();
+            try
+            {
+                Db_nStick.TimeStuck = nStick.TimeStuck;
+                Db_nStick.Description = nStick.Description;
+
+                DbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index");
+            }
 
             return RedirectToAction("Index");
         }
