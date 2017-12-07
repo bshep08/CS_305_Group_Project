@@ -1,0 +1,97 @@
+﻿@model IEnumerable<CS_305_Group_Project.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Users - Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All accounts at your medical facility</h2>
+
+<style>
+    tr:nth-child(even) {
+        background-color: #eeeeee;
+    }
+
+    th {
+        vertical-align: central;
+        text-align: center;
+    }
+
+    td {
+        vertical-align: central;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h4>
+        All accounts at your medical facility
+    </h4>
+
+    <p>
+        @Html.ActionLink("Back to home", "Index", "Home")
+    </p>
+
+    <table cellpadding="10" cellspacing="10">
+        <tr>
+            <th></th>
+
+            <th align="center">
+                Role
+            </th>
+
+            <th align="center">
+                Email
+            </th>
+
+            <th align="center">
+                First Name
+            </th>
+
+            <th align="center">
+                Last Name
+            </th>
+
+            <th align="center">
+                Phone Number
+            </th>
+
+        </tr>
+
+
+        @foreach (var User in Model)
+        {
+
+            <tr>
+
+                <td align="center">
+                    @Html.ActionLink("Change Role", "AdminChangeUserRole", new { id = User.Id })
+                </td>
+
+                <td align="center">
+                    @User.Role
+                </td>
+
+                <td align="center">
+                    @User.Email
+                </td>
+
+                <td align="center">
+                    @User.FirstName
+                </td>
+
+                <td align="center">
+                    @User.LastName
+                </td>
+
+                <td align="center">
+                    @User.PhoneNumber
+                </td>
+
+            </tr>
+
+         }
+
+    </table>
+
+</body>

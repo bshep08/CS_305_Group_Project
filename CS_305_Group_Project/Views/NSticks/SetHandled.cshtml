@@ -1,21 +1,32 @@
 ﻿@model CS_305_Group_Project.Models.NStick
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "SetHandled";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Set Handled</h2>
 
-<p>
-    Are you sure you would like to delete this report?
-</p>
-
-<p>
-    If you delete this report, you will need to file 
-    a new report with appropriate, accurate information.
-</p>
+@{ 
+    if (Model.Handled)
+    {
+        <p>
+            Did you actually handle this report?
+        </p>
+    }
+    else
+    {
+        <p>
+            Did you accidentally mark this report as "handled"?
+        </p>
+    }
+}
 
 <ul>
+    <li>
+        @Model.UserName
+    </li>
+    
+
     @{
         string Time = Model.TimeStuck;
         string[] TimeParts = Time.Split('T');
@@ -61,10 +72,21 @@
     <li>Description: @Model.Description</li>
 </ul>
 
-@using (Html.BeginForm("PerformDelete", "NSticks", FormMethod.Post))
+@using (Html.BeginForm("PerformHandled", "NSticks", FormMethod.Post))
 {
 
     @Html.HiddenFor(m => m.Id)
-    <input type="submit" class="btn btn-danger" value="Delete" />
+
+    @{ 
+        if (Model.Handled)
+        {
+            <input type="submit" class="btn btn-warning" value="Yes!" />
+        }
+        else
+        {
+            <input type="submit" class="btn btn-warning" value="...Yes." />
+        }
+    }
+
     @Html.ActionLink("Cancel", "Index")
 }

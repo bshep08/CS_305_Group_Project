@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
+using System;
 namespace CS_305_Group_Project.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
@@ -16,6 +16,13 @@ namespace CS_305_Group_Project.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string WorkPlaceName { get; set; }
+        public string Role { get; set; }
+        public bool Verified { get; set; }
+        public DateTime ReportDate { get; set; }
+        public string DateSetter { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

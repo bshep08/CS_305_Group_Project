@@ -1,31 +1,76 @@
 ﻿@model IEnumerable<CS_305_Group_Project.Models.NStick>
 @{
-    ViewBag.Title = "All Needle Sticks";
+    ViewBag.Title = "Verified Sticks";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>All Needle Sticks</h2>
+<h2>Verified User Sticks</h2>
+
+<style>
+    tr:nth-child(even) {
+        background-color: #eeeeee;
+    }
+
+    th {
+        vertical-align: central;
+        text-align: center;
+    }
+
+    td {
+        vertical-align: central;
+        text-align: center;
+    }
+</style>
 
 <body>
     <h4>
-        All Stick Reports
+        All Reports From Verified Users
     </h4>
     
     <p>
         @Html.ActionLink("Back to home", "Index", "Home")
     </p>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by UserName: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+
+        <p>
+            Search After Date: @Html.TextBox("BeginDate", null, new { @class = "form-control", type = "datetime-local" })
+            <input type="submit" value="Search" />
+        </p>
+
+        <p>
+            Search Before Date: @Html.TextBox("EndDate", null, new { @class = "form-control", type = "datetime-local" })
+            <input type="submit" value="Search" />
+        </p>
+    }
     
-    <table cellpadding="5" cellspacing="5">
+    <table cellpadding="10" cellspacing="10">
         <tr>
-            <th>
+            <th align="center">
+            </th>
+
+            <th align="center">
                 User Name
             </th>
 
-            <th>
-                Time Stuck
+            <th align="center">
+                @Html.ActionLink("Handled", "SecurityIndex", new { sortOrder = ViewBag.HandleSortParm })
             </th>
 
-            <th>
+            <th align="center">
+                Report Time and Date
+            </th>
+
+            <th align="center">
+                Location
+            </th>
+
+            <th align="center">
                 Decsription
             </th>
 
@@ -36,19 +81,86 @@
 
             <tr>
 
-                <td>
-                    @Html.Encode(@NStick.UserName)
+                <td align="center">
+                    @Html.ActionLink("Set Handled", "SetHandled", new { id = NStick.Id })
                 </td>
 
-                <td>
-
-                    @Html.Encode(String.Format("{0:g}", @NStick.TimeStuck))
-
-                </td>
-
-                <td>
+                <td align="center">
                     <div style="word-wrap:break-word;">
-                        @Html.Encode(@NStick.Description)
+                        @NStick.UserName
+                    </div>
+                </td>
+
+                
+                    @{
+                        if (NStick.Handled)
+                        {
+                            <td align="center">
+                                 &#10004  @* 9989 for green check mark in a box *@
+                            </td>
+                        }
+                        else
+                        {
+                            <td align="center">
+                                 -
+                            </td>
+                        }
+                    }
+
+                <td align="center">
+
+                    @{
+                        string Time = NStick.TimeStuck;
+                        string[] TimeParts = Time.Split('T');
+                        string[] FirstParts = TimeParts[0].Split('-');
+
+                        int t = 0;
+                        Int32.TryParse(TimeParts[1].Substring(0, 2), out t);
+
+                        string mornNight = "";
+
+                        if (t == 0)
+                        {
+                            mornNight = " AM";
+                            TimeParts[1] = "12" + TimeParts[1].Substring(2, 3);
+                        }
+                        else if (t < 12)
+                        {
+                            mornNight = " AM";
+                        }
+                        else if (t == 12)
+                        {
+                            mornNight = " PM";
+                        }
+                        else
+                        {
+                            t -= 12;
+                            if (t < 10)
+                            {
+                                TimeParts[1] = "0" + t.ToString() + TimeParts[1].Substring(2, 3);
+                            }
+                            else
+                            {
+                                TimeParts[1] = t.ToString() + TimeParts[1].Substring(2, 3);
+                            }
+                            mornNight = " PM";
+                        }
+
+                        Time = "";
+                        Time = FirstParts[1] + "-" + FirstParts[2] + "-" + FirstParts[0] + " " + TimeParts[1] + mornNight;
+                    }
+
+                    @Time
+
+                </td>
+
+                <td align="center">
+                    @NStick.Location
+                </td>
+
+                <td align="center">
+                    <div style="word-wrap:break-word;">
+                        @NStick.Description
                     </div>
                 </td>
 

@@ -1,0 +1,47 @@
+﻿@model CS_305_Group_Project.Models.ApplicationUser
+@{
+    ViewBag.Title = "AdminChangeUserRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Change User Role</h2>
+
+<p>
+    Are you sure you want to change this user's verification status?
+</p>
+
+<ul>
+    <li>UserName: @Model.UserName</li>
+    <li>User Email: @Model.Email</li>
+    <li>User Name: @Model.FirstName @Model.LastName</li>
+</ul>
+
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+    {
+        Text = "User",
+        Value = "User"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Safety",
+        Value = "SecurityOfficer",
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Admin",
+        Value = "Admin"
+    });
+}
+
+@using (Html.BeginForm("PerformChangeRole", "NSticks", FormMethod.Post))
+{
+    <p>
+        @Html.DropDownListFor(m => m.Role, listItems, Model.Role)
+    </p>
+
+    @Html.HiddenFor(m => m.Id)
+    <input type="submit" class="btn btn-danger" value="Change Verification" />
+    @Html.ActionLink("Cancel", "AdminUsers")
+}

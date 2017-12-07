@@ -196,9 +196,41 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711070230258_AddNSticksTable.cs" />
-    <Compile Include="Migrations\201711070230258_AddNSticksTable.Designer.cs">
-      <DependentUpon>201711070230258_AddNSticksTable.cs</DependentUpon>
+    <Compile Include="Migrations\201712050535503_AddNSticksTable.cs" />
+    <Compile Include="Migrations\201712050535503_AddNSticksTable.Designer.cs">
+      <DependentUpon>201712050535503_AddNSticksTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712050536270_AddAspNetUsersTable.cs" />
+    <Compile Include="Migrations\201712050536270_AddAspNetUsersTable.Designer.cs">
+      <DependentUpon>201712050536270_AddAspNetUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712050537401_Initial.cs" />
+    <Compile Include="Migrations\201712050537401_Initial.Designer.cs">
+      <DependentUpon>201712050537401_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712060035453_AddAspNetUsersTable1.cs" />
+    <Compile Include="Migrations\201712060035453_AddAspNetUsersTable1.Designer.cs">
+      <DependentUpon>201712060035453_AddAspNetUsersTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712060127053_AddAspNetUsersTable2.cs" />
+    <Compile Include="Migrations\201712060127053_AddAspNetUsersTable2.Designer.cs">
+      <DependentUpon>201712060127053_AddAspNetUsersTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712060216296_AddAspNetUsersTable3.cs" />
+    <Compile Include="Migrations\201712060216296_AddAspNetUsersTable3.Designer.cs">
+      <DependentUpon>201712060216296_AddAspNetUsersTable3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712060222207_AddNSticksTable1.cs" />
+    <Compile Include="Migrations\201712060222207_AddNSticksTable1.Designer.cs">
+      <DependentUpon>201712060222207_AddNSticksTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712060258416_AddAspNetUsersTable4.cs" />
+    <Compile Include="Migrations\201712060258416_AddAspNetUsersTable4.Designer.cs">
+      <DependentUpon>201712060258416_AddAspNetUsersTable4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712060258559_AddNSticksTable2.cs" />
+    <Compile Include="Migrations\201712060258559_AddNSticksTable2.Designer.cs">
+      <DependentUpon>201712060258559_AddNSticksTable2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -231,7 +263,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -269,6 +303,12 @@
     <Content Include="Views\NSticks\NStickForm.cshtml" />
     <Content Include="Views\NSticks\Delete.cshtml" />
     <Content Include="Views\NSticks\SecurityIndex.cshtml" />
+    <Content Include="Views\NSticks\SecurityUsers.cshtml" />
+    <Content Include="Views\NSticks\SetVerified.cshtml" />
+    <Content Include="Views\NSticks\AdminUsers.cshtml" />
+    <Content Include="Views\NSticks\AdminChangeUserRole.cshtml" />
+    <Content Include="Views\NSticks\AdminIndex.cshtml" />
+    <Content Include="Views\NSticks\SetHandled.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,8 +327,32 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711070230258_AddNSticksTable.resx">
-      <DependentUpon>201711070230258_AddNSticksTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712050535503_AddNSticksTable.resx">
+      <DependentUpon>201712050535503_AddNSticksTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712050536270_AddAspNetUsersTable.resx">
+      <DependentUpon>201712050536270_AddAspNetUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712050537401_Initial.resx">
+      <DependentUpon>201712050537401_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712060035453_AddAspNetUsersTable1.resx">
+      <DependentUpon>201712060035453_AddAspNetUsersTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712060127053_AddAspNetUsersTable2.resx">
+      <DependentUpon>201712060127053_AddAspNetUsersTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712060216296_AddAspNetUsersTable3.resx">
+      <DependentUpon>201712060216296_AddAspNetUsersTable3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712060222207_AddNSticksTable1.resx">
+      <DependentUpon>201712060222207_AddNSticksTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712060258416_AddAspNetUsersTable4.resx">
+      <DependentUpon>201712060258416_AddAspNetUsersTable4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712060258559_AddNSticksTable2.resx">
+      <DependentUpon>201712060258559_AddNSticksTable2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

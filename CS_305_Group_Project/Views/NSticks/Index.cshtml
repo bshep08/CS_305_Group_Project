@@ -6,6 +6,23 @@
 
 <h2>Needle Sticks</h2>
 
+<style>
+    tr:nth-child(even) {
+        background-color: #eeeeee;
+    }
+
+    th {
+        vertical-align: central;
+        text-align: center;
+    }
+
+    td {
+        vertical-align:central;
+        text-align:center;
+    }
+
+</style>
+
 <body>
     <h4>
         User's Stick Report
@@ -19,14 +36,18 @@
         @Html.ActionLink("Back to home", "Index", "Home")
     </p>
 
-    <table cellpadding="5" cellspacing="5">
+    <table cellpadding="10" cellspacing="10">
         <tr>
             <th></th>
-            <th>
-                Time Stuck
+            <th align="center">
+                Report Time and Date
             </th>
 
-            <th>
+            <th align="center">
+                Location
+            </th>
+
+            <th align="center">
                 Decsription
             </th>
 
@@ -45,15 +66,59 @@
 
                 </td>
 
-                <td>
+                <td align="center">
+                    @{
+                        string Time = NStick.TimeStuck;
+                        string[] TimeParts = Time.Split('T');
+                        string[] FirstParts = TimeParts[0].Split('-');
 
-                    @Html.Encode(String.Format("{0:g}", @NStick.TimeStuck))
+                        int t = 0;
+                        Int32.TryParse(TimeParts[1].Substring(0, 2), out t);
+
+                        string mornNight = "";
+
+                        if (t == 0)
+                        {
+                            mornNight = " AM";
+                            TimeParts[1] = "12" + TimeParts[1].Substring(2, 3);
+                        }
+                        else if (t < 12)
+                        {
+                            mornNight = " AM";
+                        }
+                        else if (t == 12)
+                        {
+                            mornNight = " PM";
+                        }
+                        else
+                        {
+                            t -= 12;
+                            if (t < 10)
+                            {
+                                TimeParts[1] = "0" + t.ToString() + TimeParts[1].Substring(2, 3);
+                            }
+                            else
+                            {
+                                TimeParts[1] = t.ToString() + TimeParts[1].Substring(2, 3);
+                            }
+                            mornNight = " PM";
+                        }
+
+                        Time = "";
+                        Time = FirstParts[1] + "-" + FirstParts[2] + "-" + FirstParts[0] + " " + TimeParts[1] + mornNight;
+                    }
+
+                    @Time
 
                 </td>
 
-                <td>
+                <td align="center">
+                    @NStick.Location
+                </td>
+
+                <td align="center">
                     <div style="word-wrap:break-word;">
-                        @Html.Encode(@NStick.Description)
+                        @NStick.Description
                     </div>
                 </td>
 

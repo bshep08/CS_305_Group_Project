@@ -65,6 +65,21 @@ namespace CS_305_Group_Project.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(40, ErrorMessage = "Enter your first name")]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(40, ErrorMessage = "Enter your last name")]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [StringLength(30, ErrorMessage = "Username required")]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +94,15 @@ namespace CS_305_Group_Project.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "Enter your the name of your workplace")]
+        [Display(Name = "Work Place")]
+        public string WorkPlaceName { get; set; }
     }
 
     public class ResetPasswordViewModel
