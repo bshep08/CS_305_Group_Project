@@ -17,9 +17,10 @@
 
 <ul>
     @{
-        
+
     <li>Time Stuck: First:@Model.FirstName Last:@Model.LastName</li>
     <li>Description: Email:@Model.Email UserName:@Model.UserName</li>
+        }
 </ul>
 
 @using (Html.BeginForm("PerformDeleteUser", "NSticks", FormMethod.Post))
