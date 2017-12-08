@@ -168,8 +168,7 @@ namespace CS_305_Group_Project.Controllers
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                     WorkPlaceName = model.WorkPlaceName,
-                    Role = "User",
-                    ReportDate = DateTime.Now
+                    Role = "User"
                     
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);

@@ -5,26 +5,30 @@
 
 <div class="jumbotron">
     <h1>Needle Stick</h1>
-    <p class="lead">Welcome! Please log in to see your logged reports or create a new report.</p>
+    
     <p>
-        @{
-            if (User.Identity.Name.Length == 0)
-            {
+    @{
+        if (User.Identity.Name.Length == 0)
+        {
+                <p class="lead">Welcome! Please log in to see your logged reports or create a new report.</p>
                 <input type="button" onclick="location.href='@Url.Action("Login", "Account")'" class="btn btn-primary btn-lg" value="Log in >>">
 
-            }
-            else if (Model.Role.Equals("SecurityOfficer"))
-            {
-                <input type="button" onclick="location.href='@Url.Action("Index", "NSticks")'" class="btn btn-primary btn-lg" value="View user's reported sticks >>">
+        }
+        else if (Model.Role.Equals("SecurityOfficer"))
+        {
+            <p class="lead">Welcome! You can view accident reports and handle user verification.</p>
+                <input type="button" onclick="location.href='@Url.Action("Index", "NSticks")'" class="btn btn-primary btn-lg" value="View users' reported sticks >>">
                 <input type="button" onclick="location.href='@Url.Action("SecurityUsers", "NSticks")'" class="btn btn-primary btn-lg" value="View Users >>">
-            }
-            else if (Model.Role.Equals("Admin"))
-            {
-                <input type="button" onclick="location.href='@Url.Action("Index", "NSticks")'" class="btn btn-primary btn-lg" value="View user's reported sticks >>">
+        }
+        else if (Model.Role.Equals("Admin"))
+        {
+            <p class="lead">Welcome! You control who is who, and what they are.</p>
+                <input type="button" onclick="location.href='@Url.Action("Index", "NSticks")'" class="btn btn-primary btn-lg" value="View users' reported sticks >>">
                 <input type="button" onclick="location.href='@Url.Action("AdminUsers", "NSticks")'" class="btn btn-primary btn-lg" value="View Accounts >>">
-            }
-            else
-            {
+        }
+        else
+        {
+            <p class="lead">Welcome! You can see your logged reports or create a new report.</p>
                 <input type="button" onclick="location.href='@Url.Action("New", "NSticks")'" class="btn btn-primary btn-lg" value="Report needle stick >>">
                 <input type="button" onclick="location.href='@Url.Action("Index", "NSticks")'" class="btn btn-primary btn-lg" value="View your reported sticks >>">
             }

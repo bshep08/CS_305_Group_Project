@@ -32,8 +32,24 @@
         @Html.ActionLink("Back to home", "Index", "Home")
     </p>
 
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by name:    @Html.TextBox("NameString")
+            <input type="submit" value="Search" />
+        </p>
+
+        <p>
+            Find by UserName: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+
     <table cellpadding="10" cellspacing="10">
         <tr>
+            <th></th>
+
             <th></th>
 
             <th align="center">
@@ -42,6 +58,10 @@
 
             <th align="center">
                 Email
+            </th>
+
+            <th align="center">
+                UserName
             </th>
 
             <th align="center">
@@ -64,16 +84,32 @@
 
             <tr>
 
-                <td align="center">
+                <td align ="center">
                     @Html.ActionLink("Change Role", "AdminChangeUserRole", new { id = User.Id })
+
                 </td>
 
                 <td align="center">
-                    @User.Role
+                    @Html.ActionLink("Delete", "DeleteUser", new { id = User.Id })
+                </td>
+
+                <td align="center">
+                    @{
+                        if (User.Role.Equals("SecurityOfficer")) {
+                            @Html.Encode("Safety");
+                        }
+                        else {
+                            @User.Role;
+                        }
+                    }
                 </td>
 
                 <td align="center">
                     @User.Email
+                </td>
+
+                <td align="center">
+                    @User.UserName
                 </td>
 
                 <td align="center">

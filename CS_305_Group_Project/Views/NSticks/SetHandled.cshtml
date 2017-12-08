@@ -7,7 +7,7 @@
 <h2>Set Handled</h2>
 
 @{ 
-    if (Model.Handled)
+    if (!Model.Handled)
     {
         <p>
             Did you actually handle this report?
@@ -69,6 +69,7 @@
     }
 
     <li>Time Stuck: @Time</li>
+    <li>Location: @Model.Location</li>
     <li>Description: @Model.Description</li>
 </ul>
 
@@ -78,7 +79,7 @@
     @Html.HiddenFor(m => m.Id)
 
     { 
-        if (Model.Handled)
+        if (!Model.Handled)
         {
             <input type="submit" class="btn btn-warning" value="Yes!" />
         }

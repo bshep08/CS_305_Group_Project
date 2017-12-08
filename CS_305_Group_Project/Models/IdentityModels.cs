@@ -21,8 +21,6 @@ namespace CS_305_Group_Project.Models
         public string WorkPlaceName { get; set; }
         public string Role { get; set; }
         public bool Verified { get; set; }
-        public DateTime ReportDate { get; set; }
-        public string DateSetter { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
